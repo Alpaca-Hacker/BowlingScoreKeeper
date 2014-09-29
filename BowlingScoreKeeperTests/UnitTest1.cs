@@ -74,6 +74,33 @@ namespace BowlingScoreKeeperTests
 
             Assert.AreEqual(131,result);
         }
+        [TestMethod]
+        public void GameWithSparesAndStrikes()
+        {
+            var player = new Player();
+            var testScore = new int[] { 10,3,7,6,1,10,10,10,2,8,9,0,7,3,10,10,10 };
 
+            for (int i = 0; i <testScore.Length; i++)
+            {
+                player.Ball(testScore[i]);
+            }
+
+            var result = player.Score();
+
+            Assert.AreEqual(193, result);
+        }
+        [TestMethod]
+        public void PerfectScoreGame()
+        {
+            var player = new Player();
+            for (int i = 1; i < 13; i++)
+            {
+                player.Ball(10);
+            }
+
+            var result = player.Score();
+
+            Assert.AreEqual(300, result);
+        }
     }
 }
