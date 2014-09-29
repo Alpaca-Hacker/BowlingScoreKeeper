@@ -102,5 +102,23 @@ namespace BowlingScoreKeeperTests
 
             Assert.AreEqual(300, result);
         }
+        [TestMethod]
+        public void GameNotCompleteScore()
+        {
+            var player = new Player();
+            var testScore = new int[] { 9, 0, 3, 5, 6, 1 };
+
+            for (int i = 0; i < testScore.Length; i++)
+            {
+                player.Ball(testScore[i]);
+            }
+
+            var result = player.Score(3);
+
+            Assert.AreEqual(24, result);
+
+        }
+
+
     }
 }
