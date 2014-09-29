@@ -8,11 +8,11 @@ namespace BowlingScoreKeeper
 {
     class Score
     {
-        public int[,] Frames { get; set; }
+        public int?[,] Frames { get; set; }
 
         public Score()
         {
-            this.Frames = new int[12, 2];
+            this.Frames = new int?[12, 2];
         }
 
 
@@ -23,24 +23,45 @@ namespace BowlingScoreKeeper
 
             for (int frame = 0; frame < maxFrame; frame++)
             {
+                if (Frames[frame,0] == null)
+                {
+                    return score;
+                }
+
                 if (IsStrike(frame))
                 {
-                    if (Frames[frame + 1, 0] == 10)
+                    if (Frames[frame + 1, 0] == null)
                     {
-                        score += 20 + Frames[frame + 2, 0];
+                        return -1;
+                    }
+
+                    if (IsStrike(frame + 1))
+                    {
+                        if (Frames[frame + 2, 0] == null)
+                        {
+                            return -1;
+                        }
+                        else
+                        {
+                            score += 20 + (int)Frames[frame + 2, 0];
+                        }
                     }
                     else
                     {
-                        score += 10 + Frames[frame + 1, 0] + Frames[frame + 1, 1];
+                        score += 10 + (int)Frames[frame + 1, 0] + (int)Frames[frame + 1, 1];
                     }
                 }
                 else if (IsSpare(frame))
                 {
-                    score += 10 + Frames[frame + 1, 0];
+                    if (Frames[frame+1,0] == null)
+                    {
+                        return -1;
+                    }
+                    score += 10 + (int)Frames[frame + 1, 0];
                 }
                 else
                 {
-                    score += Frames[frame, 0] + Frames[frame, 1];
+                    score += (int)Frames[frame, 0] + (int)Frames[frame, 1];
                 }
 
             }

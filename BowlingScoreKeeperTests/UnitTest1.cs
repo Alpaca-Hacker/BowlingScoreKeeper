@@ -118,6 +118,35 @@ namespace BowlingScoreKeeperTests
             Assert.AreEqual(24, result);
 
         }
+        [TestMethod]
+        public void GameNotCompleteWithStrikes()
+        {
+            var player = new Player();
+            var testScore = new int[] { 9, 1, 3, 5, 10, 10,10, 10 };
+
+            for (int i = 0; i < testScore.Length; i++)
+            {
+                player.Ball(testScore[i]);
+            }
+
+            var result = player.Score(6);
+
+        }
+        [TestMethod]
+        public void GameNotCompleteWithSparesAndStrikes()
+        {
+            var player = new Player();
+            var testScore = new int[] { 9, 1, 3, 5, 10, 5, 5};
+
+            for (int i = 0; i < testScore.Length; i++)
+            {
+                player.Ball(testScore[i]);
+            }
+
+            var result = player.Score(4);
+
+
+        }
 
 
     }

@@ -34,7 +34,7 @@ namespace BowlingScoreKeeper
                 }
                 else
                 {
-                    midDisplay += score.Frames[frame, 0].ToString() + "¦";
+                    midDisplay += score.Frames[frame, 0].ToString() + "|";
                     if (score.Frames[frame, 0] + score.Frames[frame, 1] == 10)
                     {
                         midDisplay += "/";
@@ -49,11 +49,14 @@ namespace BowlingScoreKeeper
                     midDisplay += "\t";
                 }
                 string text = score.ScoreToFrame(frame+1).ToString();
-                if (text.Length<3)
+                if (text != "-1")
                 {
-                    text = " "+text;
+                    if (text.Length < 3)
+                    {
+                        text = " " + text;
+                    }
+                    bottomDisplay += text + "\t";
                 }
-                   bottomDisplay += text + "\t";
             }
             if (maxFrame == 10)
             {
