@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace BowlingScoreKeeper
 {
     class Score
-    { 
+    {
         public int[,] Frames { get; set; }
 
         public Score()
         {
-            this.Frames = new int[12, 2]; 
+            this.Frames = new int[12, 2];
         }
 
-       
+
 
         public int ScoreToFrame(int maxFrame)
         {
@@ -23,7 +23,7 @@ namespace BowlingScoreKeeper
 
             for (int frame = 0; frame < maxFrame; frame++)
             {
-                if (Frames[frame, 0] == 10)
+                if (IsStrike(frame))
                 {
                     if (Frames[frame + 1, 0] == 10)
                     {
@@ -34,7 +34,7 @@ namespace BowlingScoreKeeper
                         score += 10 + Frames[frame + 1, 0] + Frames[frame + 1, 1];
                     }
                 }
-                else if (Frames[frame, 0] + Frames[frame, 1] == 10)
+                else if (IsSpare(frame))
                 {
                     score += 10 + Frames[frame + 1, 0];
                 }
@@ -47,5 +47,24 @@ namespace BowlingScoreKeeper
             return score;
         }
 
+        public bool IsStrike(int frame)
+        {
+            if (Frames[frame, 0] == 10)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsSpare(int frame)
+        {
+            if (Frames[frame, 0] + Frames[frame, 1] == 10)
+            {
+                return true;
+            }
+            return false;
+        }
     }
+
 }
+
