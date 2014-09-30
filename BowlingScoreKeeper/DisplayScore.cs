@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BowlingScoreKeeper
 {
-    class DisplayScore
+    public class DisplayScore
     {
-
         public DisplayScore(int maxFrame, Player player)
         {
             Score score = player.score;
@@ -26,6 +25,10 @@ namespace BowlingScoreKeeper
         
             for (int frame = 0; frame < maxFrame; frame++)
             {
+                if (score.Frames[frame,0] == null)
+                {
+                    break;
+                }
                 if (score.IsStrike(frame))
                 {
                     if (frame < 9)
@@ -81,19 +84,20 @@ namespace BowlingScoreKeeper
                     }
                     else
                     {
-                        midDisplay += score.Frames[10, 0] + (score.IsSpare(10) ? score.Frames[10, 0].ToString() : "/");
+                        midDisplay += score.Frames[10, 0] 
+                            + (score.IsSpare(10) ? "/" : score.Frames[10, 1].ToString());
                     }
                 }
                 else if (score.IsSpare(9))
                 {
-                    midDisplay += score.Frames[10,0];
+                    midDisplay += (score.IsStrike(10) ? "X" :score.Frames[10,0].ToString());
                 }
             }
 
-            Console.WriteLine(player.Name);
             Console.WriteLine(topDisplay);
             Console.WriteLine(midDisplay);
             Console.WriteLine(bottomDisplay);
         }
+
     }
 }

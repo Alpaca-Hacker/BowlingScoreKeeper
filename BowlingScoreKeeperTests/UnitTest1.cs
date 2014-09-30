@@ -71,6 +71,7 @@ namespace BowlingScoreKeeperTests
             }
 
             var result = player.Score();
+            new DisplayScore(10, player);
 
             Assert.AreEqual(131,result);
         }
@@ -128,10 +129,9 @@ namespace BowlingScoreKeeperTests
             {
                 player.Ball(testScore[i]);
             }
-
-            var result = player.Score(6);
-
+            new DisplayScore(6, player);
         }
+
         [TestMethod]
         public void GameNotCompleteWithSparesAndStrikes()
         {
@@ -143,11 +143,30 @@ namespace BowlingScoreKeeperTests
                 player.Ball(testScore[i]);
             }
 
-            var result = player.Score(4);
+             new DisplayScore(4, player);
 
+           
 
         }
+        [TestMethod]
+        public void GameWithSparesAndStrikesInTenth()
+        {
+            var player = new Player();
 
+            for (int i = 0; i < 18; i++)
+            {
+                player.Ball(0);
+            }
+
+            player.Ball(10);
+            player.Ball(8);
+            player.Ball(2);
+
+            var result = player.Score(10);
+
+            Assert.AreEqual(20, result);
+            new DisplayScore(10, player);
+        }
 
     }
 }

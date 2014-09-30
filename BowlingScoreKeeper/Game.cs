@@ -43,17 +43,18 @@ namespace BowlingScoreKeeper
                     else
                     {
                         int tenthFrameScore = 0;
+                        bool twoMoreBalls = false;
                         input = InputScore(10, player,10, 1);
                         if (input == 10)
                         {
-                            input = 0;
+                            twoMoreBalls = true;
                         }
                         else
                         {
                             tenthFrameScore = input;
                         }
                         input = InputScore(10, player, 10-tenthFrameScore, 2);
-                        if (input+tenthFrameScore == 10)
+                        if (input+tenthFrameScore == 10 || twoMoreBalls)
                         {
                             input = InputScore(10, player, 10, 3);
                         }

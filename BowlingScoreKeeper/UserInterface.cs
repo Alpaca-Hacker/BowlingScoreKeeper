@@ -7,13 +7,11 @@ namespace BowlingScoreKeeper
 {
     class UserInterface
     {
-        const int outputLine = 4;
-        const int inputLine = 5;
-        const int scoreStart = 6;
+        const int scoreStart = 4;
 
         public static void Write(string message)
         {
-            ClearLine(outputLine);
+            ClearLine(Console.WindowHeight-3);
             Console.WriteLine(message);
         }
 
@@ -24,7 +22,7 @@ namespace BowlingScoreKeeper
             int output;
             while (!Int32.TryParse(input,out output) || output < 0)
             {
-                ClearLine(inputLine);
+                ClearLine(Console.WindowHeight-2);
                 input = Console.ReadLine();
             }
             return output;
@@ -36,13 +34,13 @@ namespace BowlingScoreKeeper
             string input = "";
             while (String.IsNullOrWhiteSpace(input))
             {
-                ClearLine(inputLine);
+                ClearLine(Console.WindowHeight-2);
                 input = Console.ReadLine();
             }
             return input;
         }  
         
-        internal static void ClearLine(int line)
+        private static void ClearLine(int line)
         {
             Console.SetCursorPosition(0, line);
             Console.Write(new String(' ', Console.BufferWidth));
@@ -61,14 +59,16 @@ namespace BowlingScoreKeeper
             Console.Write(new String('*', Console.BufferWidth));
         }
 
-
-
         public void DisplayScores(List<Player> players, int frame)
         {
+            int height = 8+(players.Count*5);
+            Console.WindowHeight = height;
             Title();                
             ClearLine(scoreStart);
             foreach (var player in players)
             {
+                Console.SetCursorPosition(Console.BufferWidth / 2 - player.Name.Length / 2, Console.CursorTop);
+                Console.WriteLine(player.Name);
                 new DisplayScore(frame ,player);
                 Console.WriteLine("");
             }
