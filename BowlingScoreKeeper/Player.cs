@@ -9,32 +9,33 @@ namespace BowlingScoreKeeper
     public class Player
     {
         public String Name { get; set; }
-        private int _currentBall = 0;
-        private int _currentFrame = 0;
+
+        int currentBall = 0;
+        int currentFrame = 0;
         Score score = new Score();
 
         public int Score(int maxFrame = 10)
         {
             var scored = score.ScoreToFrame(maxFrame);
-            new DisplayScore(maxFrame, score);
+            new DisplayScore(maxFrame, score, Name);
             return scored;
         }
 
         public void Ball(int pins)
         {
-            score.Frames[_currentFrame,_currentBall] = pins;
+            score.Frames[currentFrame,currentBall] = pins;
 
-            if (pins == 10 && _currentBall == 0)
+            if (pins == 10 && currentBall == 0)
             {
-                _currentFrame++;
+                currentFrame++;
             }
-            else if (_currentBall == 1)
+            else if (currentBall == 1)
             {
-                _currentBall = 0;
-                _currentFrame++;
+                currentBall = 0;
+                currentFrame++;
             }
             else
-                _currentBall = 1;
+                currentBall = 1;
         }
     }
 }

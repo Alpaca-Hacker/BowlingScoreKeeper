@@ -5,10 +5,11 @@ using System.Text;
 
 namespace BowlingScoreKeeper
 {
-    class Display
+    class UserInterface
     {
         const int outputLine = 4;
         const int inputLine = 5;
+        const int scoreStart = 6;
 
         public static void Write(string message)
         {
@@ -60,6 +61,18 @@ namespace BowlingScoreKeeper
             Console.Write(new String('*', Console.BufferWidth));
         }
 
-    
+
+
+        public void DisplayScore(List<Player> players, int frame)
+        {                
+            Title();                
+            ClearLine(scoreStart);
+
+            foreach (var player in players)
+            {
+                player.Score(frame);
+                Console.WriteLine("");
+            }
+        }
     }
 }
