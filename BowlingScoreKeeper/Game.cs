@@ -31,7 +31,7 @@ namespace BowlingScoreKeeper
             {
                 foreach (var player in players)
                 {
-                    ui.DisplayScore(players,frame);
+                    ui.DisplayScores(players,frame);
                     if (frame < 10)
                     {
                         input = InputScore(frame, player, 10, 1);
@@ -62,8 +62,10 @@ namespace BowlingScoreKeeper
                 }
 
             }
-
-            UserInterface.InputString("DONE!");
+            var sortedPlayers = players.OrderByDescending(p => p.Score(10)).ToList();
+            ui.DisplayScores(sortedPlayers, 10);
+            UserInterface.Write(sortedPlayers[0].Name+" Wins! Press Enter to End");
+            Console.Read();
         }
 
         private static int InputScore(int frame, Player player, int maxScore, int ball)

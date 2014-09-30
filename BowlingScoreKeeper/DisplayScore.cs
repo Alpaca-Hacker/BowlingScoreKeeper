@@ -9,8 +9,9 @@ namespace BowlingScoreKeeper
     class DisplayScore
     {
 
-        public DisplayScore(int maxFrame, Score score, string name)
+        public DisplayScore(int maxFrame, Player player)
         {
+            Score score = player.score;
             string topDisplay;
             string midDisplay;
             string bottomDisplay;
@@ -58,11 +59,16 @@ namespace BowlingScoreKeeper
                 string text = score.ScoreToFrame(frame+1).ToString();
                 if (text != "-1")
                 {
-                    if (text.Length < 3)
+                    if (text.Length == 1)
                     {
-                        text = " " + text;
+                        text = " " + text+" ";
+                    }
+                    if (text.Length == 2)
+                    {
+                        text += " ";
                     }
                     bottomDisplay += text + " ";
+
                 }
             }
             if (maxFrame == 10)
@@ -84,7 +90,7 @@ namespace BowlingScoreKeeper
                 }
             }
 
-            Console.WriteLine(name);
+            Console.WriteLine(player.Name);
             Console.WriteLine(topDisplay);
             Console.WriteLine(midDisplay);
             Console.WriteLine(bottomDisplay);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BowlingScoreKeeper
 {
-    class Score
+    public class Score
     {
         public int?[,] Frames { get; set; }
 

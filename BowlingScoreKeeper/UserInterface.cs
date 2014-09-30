@@ -63,14 +63,13 @@ namespace BowlingScoreKeeper
 
 
 
-        public void DisplayScore(List<Player> players, int frame)
-        {                
+        public void DisplayScores(List<Player> players, int frame)
+        {
             Title();                
             ClearLine(scoreStart);
-
             foreach (var player in players)
             {
-                player.Score(frame);
+                new DisplayScore(frame ,player);
                 Console.WriteLine("");
             }
         }

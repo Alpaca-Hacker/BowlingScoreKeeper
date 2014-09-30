@@ -12,12 +12,12 @@ namespace BowlingScoreKeeper
 
         int currentBall = 0;
         int currentFrame = 0;
-        Score score = new Score();
+        public Score score = new Score();
 
         public int Score(int maxFrame = 10)
         {
             var scored = score.ScoreToFrame(maxFrame);
-            new DisplayScore(maxFrame, score, Name);
+
             return scored;
         }
 
