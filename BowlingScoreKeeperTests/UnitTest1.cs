@@ -128,8 +128,15 @@ namespace BowlingScoreKeeperTests
             for (int i = 0; i < testScore.Length; i++)
             {
                 player.Ball(testScore[i]);
-            }
+            }  
             new DisplayScore(6, player);
+
+            var result = player.Score(4);
+            Assert.AreEqual(81, result);
+
+            result = player.Score(6);
+            Assert.AreEqual(-1, result);
+                     
         }
 
         [TestMethod]
@@ -145,7 +152,11 @@ namespace BowlingScoreKeeperTests
 
              new DisplayScore(4, player);
 
-           
+             var result = player.Score(4);
+             Assert.AreEqual(-1, result);
+
+             result = player.Score(3);
+             Assert.AreEqual(41, result);
 
         }
         [TestMethod]
@@ -162,11 +173,40 @@ namespace BowlingScoreKeeperTests
             player.Ball(8);
             player.Ball(2);
 
-            var result = player.Score(10);
-
-            Assert.AreEqual(20, result);
             new DisplayScore(10, player);
+            
+            var result = player.Score(10);
+            Assert.AreEqual(20, result);
+            
         }
+        [TestMethod]
+        public void IsStrikeAndIsSpareTest()
+        {
+            var player = new Player();
+            var testScore = new int[] { 9, 1, 3, 5, 10, 5, 5 };
 
+            for (int i = 0; i < testScore.Length; i++)
+            {
+                player.Ball(testScore[i]);
+            }
+
+            new DisplayScore(4, player);
+
+            var result = player.score.IsStrike(3);
+            Assert.IsFalse(result);
+
+            result = player.score.IsSpare(3);
+            Assert.IsTrue(result);
+
+            result = player.score.IsSpare(2);
+            Assert.IsFalse(result);
+
+            result = player.score.IsSpare(1);
+            Assert.IsFalse(result);
+
+            result = player.score.IsStrike(1);
+            Assert.IsFalse(result);
+
+        }
     }
 }

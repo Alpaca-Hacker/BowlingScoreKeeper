@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BowlingScoreKeeper
 {
@@ -20,7 +16,7 @@ namespace BowlingScoreKeeper
             {
                 topDisplay += " " + i + "  ";
             }
-            midDisplay =    "Bowls ";
+            midDisplay =    "      ";
             bottomDisplay = "Score ";
         
             for (int frame = 0; frame < maxFrame; frame++)

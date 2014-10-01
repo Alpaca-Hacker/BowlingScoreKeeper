@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace BowlingScoreKeeper
 {
     public class Score
@@ -16,7 +11,7 @@ namespace BowlingScoreKeeper
         }
 
 
-
+// ScoreToFrame returns score upto the frame or returns -1 if inconclusive 
         public int ScoreToFrame(int maxFrame)
         {
             int score = 0;
