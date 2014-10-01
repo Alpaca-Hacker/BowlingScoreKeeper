@@ -55,9 +55,14 @@ namespace BowlingScoreKeeper
                             tenthFrameScore = input;
                         }
                         input = InputScore(10, player, 10-tenthFrameScore, 2);
+
                         if (input+tenthFrameScore == 10 || twoMoreBalls)
                         {
-                            input = InputScore(10, player, 10, 3);
+                            if (input+tenthFrameScore == 10)
+                            {
+                                tenthFrameScore = 0;
+                            }
+                            input = InputScore(10, player, 10-tenthFrameScore, 3);
                         }
 
                     }

@@ -48,18 +48,19 @@ namespace BowlingScoreKeeper
         public void Title()
         {
             Console.Clear();
-            string titleText = "Bowling Score Keeper";
 
-            Console.Write(new String('*', Console.BufferWidth));
-            Console.Write(new String('*', (Console.BufferWidth/2)-titleText.Length/2));
-            Console.Write(titleText);
-            Console.Write(new String('*', (Console.BufferWidth/2)-titleText.Length/2));
-            Console.Write(new String('*', Console.BufferWidth));
+            string titleText = "║Bowling Score Keeper║";
+            string topFrame = "╔"+new String('═',titleText.Length-2)+"╗";
+            string botFrame = "╚"+new String('═',titleText.Length-2)+"╝";
+
+            CentreWrite(topFrame);
+            CentreWrite(titleText);
+            CentreWrite(botFrame);
         }
 
         public void DisplayScores(List<Player> players, int frame)
         {
-            int height = 8+(players.Count*5);
+            int height = 8+(players.Count*9);
             Console.WindowHeight = height;
             Title();                
             ClearLine(scoreStart);
@@ -75,6 +76,13 @@ namespace BowlingScoreKeeper
                 new DisplayScore(frame ,player);
                 Console.WriteLine("");
             }
+        }
+
+        private static void CentreWrite(string message)
+        {
+            int cursorPos = Console.BufferWidth / 2 - message.Length / 2;
+            Console.SetCursorPosition(cursorPos, Console.CursorTop);
+            Console.WriteLine(message);
         }
     }
 }
