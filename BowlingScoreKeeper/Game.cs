@@ -23,6 +23,7 @@ namespace BowlingScoreKeeper
                 string name = UserInterface.InputString("Player " + i + " Name?");
                 var player = new Player();
                 player.Name = name;
+                player.IsActive = false;
                 players.Add(player);
             }
 
@@ -30,6 +31,7 @@ namespace BowlingScoreKeeper
             {
                 foreach (var player in players)
                 {
+                    player.IsActive = true;
                     ui.DisplayScores(players,frame);
                     if (frame < 10)
                     {
@@ -59,10 +61,12 @@ namespace BowlingScoreKeeper
                         }
 
                     }
+                    player.IsActive = false;
                 }
 
             }
             var sortedPlayers = players.OrderByDescending(p => p.Score(10)).ToList();
+            sortedPlayers[0].IsActive = true;
             ui.DisplayScores(sortedPlayers, 10);
             UserInterface.Write(sortedPlayers[0].Name+" Wins! Press Enter to End");
             Console.Read();

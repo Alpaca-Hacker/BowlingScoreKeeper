@@ -89,11 +89,15 @@ namespace BowlingScoreKeeper
                     midDisplay += (score.IsStrike(10) ? "X" :score.Frames[10,0].ToString());
                 }
             }
-
+            int cursorPos = Console.BufferWidth / 2 - topDisplay.Length / 2;
+            Console.SetCursorPosition(cursorPos, Console.CursorTop);
             Console.WriteLine(topDisplay);
+            Console.SetCursorPosition(cursorPos, Console.CursorTop);
             Console.WriteLine(midDisplay);
+            Console.SetCursorPosition(cursorPos, Console.CursorTop);
             Console.WriteLine(bottomDisplay);
         }
+
 
     }
 }

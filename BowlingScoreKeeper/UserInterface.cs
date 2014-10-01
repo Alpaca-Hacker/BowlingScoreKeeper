@@ -66,7 +66,12 @@ namespace BowlingScoreKeeper
             foreach (var player in players)
             {
                 Console.SetCursorPosition(Console.BufferWidth / 2 - player.Name.Length / 2, Console.CursorTop);
+                if (player.IsActive)
+                {
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                }
                 Console.WriteLine(player.Name);
+                Console.BackgroundColor = ConsoleColor.Black;
                 new DisplayScore(frame ,player);
                 Console.WriteLine("");
             }

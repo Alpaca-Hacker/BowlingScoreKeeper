@@ -5,6 +5,7 @@ namespace BowlingScoreKeeper
     public class Player
     {
         public String Name { get; set; }
+        public bool IsActive { get; set; }
 
         int currentBall = 0;
         int currentFrame = 0;
